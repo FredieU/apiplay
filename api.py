@@ -33,8 +33,16 @@ def put(path, payload):
 
     return response.json()
 
+def patch(path, payload):
+    """Put data to path"""
 
+    response = requests.patch(baseURL + path,
+                            data = json.dumps(payload),
+                            headers = HEADERS)
 
+    print('Status Code: %s\n' % (response.status_code))
+
+    return response.json()
 
 def post(environment, user, password, path, payload):
     """Post data to path"""
@@ -69,4 +77,4 @@ if __name__ == "__main__":
 
     phone = change('phone', newPhone)
 
-    put('users/' + str(user_id), phone)
+    patch('users/' + str(user_id), phone)
